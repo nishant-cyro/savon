@@ -49,7 +49,7 @@ module Savon
     end
 
     def hash
-      @hash ||= nori.parse(xml)
+      @hash ||= nori.parse(xml.gsub(/\n/, '').gsub(/\A(.)*<soap:Envelop/, '<soap:Envelop').gsub(/<\/soap:Envelope>.*\z/, '</soap:Envelope>'))
     end
 
     def xml
